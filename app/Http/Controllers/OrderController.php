@@ -31,4 +31,10 @@ class OrderController extends Controller
     	}
 		return redirect('/login');
     }
+
+    public function product($id)
+    {
+    	$product = Product::find($id);
+    	return view('order.product',['active'=>'shop','product'=>$product]);
+    }
 }

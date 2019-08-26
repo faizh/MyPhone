@@ -24,3 +24,4 @@ Route::post('/postregister','UserController@postregister');
 
 Route::get('/cart','OrderController@cart');
 Route::get('/addcart/{id}','OrderController@addcart');
+Route::get('/product/{id}','OrderController@product');
