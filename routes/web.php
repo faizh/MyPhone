@@ -13,7 +13,6 @@
 
 Route::get('/','WebController@home');
 Route::get('/shop','WebController@shop');
-Route::get('/cart','WebController@cart');
 Route::get('/contact','WebController@contact');
 
 Route::get('/login','AuthController@login');
@@ -22,3 +21,6 @@ Route::get('/logout','AuthController@logout');
 
 Route::get('/register','UserController@register');
 Route::post('/postregister','UserController@postregister');
+
+Route::get('/cart','OrderController@cart');
+Route::get('/addcart/{id}','OrderController@addcart');

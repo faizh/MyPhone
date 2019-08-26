@@ -7,11 +7,11 @@
 		<div class="container">
 			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 				<div class="col-first">
-					<h1>Shop Category page</h1>
+					<h1>Shop page</h1>
 					<nav class="d-flex align-items-center">
 						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-						<a href="category.html">Fashon Category</a>
+						
 					</nav>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 							<ul class="collapse" id="{{$c->nama}}" data-toggle="collapse" aria-expanded="false" aria-controls="{{$c->nama}}">
 								@foreach($brand as $b)
 								@if($b->id_category==$c->id)
-								<li class="main-nav-list child"><a href="#">{{$b->nama}}<span class="number">(13)</span></a></li>
+								<li class="main-nav-list child"><a href="#" id="test">{{$b->nama}}<span class="number">({{$b->id}})</span></a></li>
 								@endif
 								@endforeach
 							</ul>
@@ -103,8 +103,9 @@
 					<div class="row">
 						<!-- single product -->
 						@foreach($product as $p)
-						<div class="col-lg-4 col-md-6">
+						<div class="col-lg-4 col-md-6" id="apa">
 							<div class="single-product">
+								<a href="/product/{{$p->id}}">
 								<img class="img-fluid" src="images/product/{{$p->gambar}}" alt="">
 								<div class="product-details">
 									<h6>{{$p->nama}}</h6>
@@ -113,8 +114,7 @@
 										<h6 class="l-through">$210.00</h6>
 									</div>
 									<div class="prd-bottom">
-
-										<a href="" class="social-info">
+										<a href="/addcart/{{$p->id}}" class="social-info">
 											<span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a>
@@ -123,15 +123,16 @@
 											<p class="hover-text">Wishlist</p>
 										</a>
 										<a href="" class="social-info">
-											<span class="lnr lnr-sync"></span>
-											<p class="hover-text">compare</p>
-										</a>
-										<a href="" class="social-info">
 											<span class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
 										</a>
+										<a href="/buy/{{$p->id}}" class="social-info">
+											<span class="lnr lnr-download"></span>
+											<p class="hover-text">Buy</p>
+										</a>
 									</div>
 								</div>
+								</a>
 							</div>
 						</div>
 						@endforeach
@@ -299,3 +300,11 @@
 	</section>
 
 	@stop
+
+	<script>
+		$(document).ready(function(){
+		  $("#test").click(function(){
+		    $("#apa").hide();
+		  });
+		});
+	</script>

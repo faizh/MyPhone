@@ -19,11 +19,6 @@ class WebController extends Controller
     	return view('web.shop',['active'=>'shop','category'=>$category,'brand'=>$brand,'product'=>$product]);
     }
 
-    public function cart()
-    {
-    	return view('web.cart',['active'=>'cart']);
-    }
-
     public function contact()
     {
     	return view('web.contact',['active'=>'contact']);
