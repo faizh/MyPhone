@@ -55,6 +55,7 @@ class OrderController extends Controller
 
     public function order(Request $request)
     {
+    	dd($request);
     	$order = new Order;
     	$order->id_user = Auth::user()->id;
     	$order->code_order = str_random(15);
@@ -84,5 +85,24 @@ class OrderController extends Controller
 	    	}
     	}
     	return view('order.your_order',['active'=>'order','order'=>$order,'product'=>$product]);
+    }
+
+    public function transfer($id)
+    {
+    	$order = Order::find($id);
+    	return view('order.transfer',['active'=>'shop','order'=>$order]);
+    }
+
+    public function complete(Request $request)
+    {
+    	$order = Order::find($request->id_order);
+    	if($request->hasFile('proof')){
+    		$file_extension = $request->file('proof')->getClientOriginalExtension();
+    		$filename = "proof".$order->id.".".$file_extension;
+    		$request->file('proof')->move('images/proof/',$filename);
+            $order->proof_payment = $filename;
+            $order->save();
+        }
+        return redirect('/yourorder');
     }
 }

@@ -29,3 +29,5 @@ Route::get('/product/{id}','OrderController@product');
 Route::get('/checkout','OrderController@checkout');
 Route::post('/order','OrderController@order');
 Route::get('/yourorder','OrderController@yourorder');
+Route::get('/transfer/{id}','OrderController@transfer');
+Route::post('/complete','OrderController@complete');

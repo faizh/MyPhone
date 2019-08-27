@@ -101,42 +101,44 @@
                                 </tr>
                                 <tr>
                                     <td>
+                                        <form action="/order" method="post">
+                                        {{csrf_field()}}
+
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="f-option5" name="selector">
-                                                <label for="f-option5">BCA</label>
+                                                <input type="radio" id="bca" name="selector">
+                                                <label for="bca" value="bca">BCA</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="f-option6" name="selector">
-                                                <label for="f-option6">Mandiri</label>
+                                                <input type="radio" id="mandiri" name="selector">
+                                                <label for="mandiri">Mandiri</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="f-option7" name="selector">
-                                                <label for="f-option7">BNI</label>
+                                                <input type="radio" id="bni" name="selector">
+                                                <label for="bni">BNI</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="f-option8" name="selector">
-                                                <label for="f-option8">BRI</label>
+                                                <input type="radio" id="bri" name="selector">
+                                                <label for="bri">BRI</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                                 </table>
-                                    <form action="/order" method="post">
-                                        {{csrf_field()}}
+                                    
                                         <h3>Total Payment <span style="color: #ffba00">IDR {{$total_payment}}</span></h3>
                                         <input type="hidden" name="total_payment" value="{{$total_payment}}">
-                                        <button type="submit" class="primary-btn">Create Order</button>
+                                        <button type="submit" class="genric-btn primary radius">Create Order</button>
                                     </form>
                             </div>
                         </div>

@@ -20,6 +20,7 @@
     <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
+	    	<h3>Your Order</h3>
             <div class="cart_inner">
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -56,14 +57,14 @@
                     			</td>
                     			<td>IDR {{$o->total_payment}}</td>
                 				@if($o->proof_payment==null)
-                				<td><a href="#" class="genric-btn warning radius">Upload</a></td>
+                				<td><a href="/transfer/{{$o->id}}" class="genric-btn warning radius">Upload</a></td>
                 				@else
-								<td><a href="#" class="genric-btn success radius">Uploaded</a></td>
+								<td><a href="/transfer/{{$o->id}}" class="genric-btn success radius">Uploaded</a></td>
                 				@endif
                     			@if($o->status==0)
-                    			<td><a href="#" class="genric-btn danger radius">Uncompleted</a></td>
+                    			<td><button class="genric-btn danger radius">Unaccepted</button></td>
                     			@else
-                    			<td><a href="#" class="genric-btn success radius">Completed</a></td>
+                    			<td><button class="genric-btn success radius">Accepted</button></td>
                     			@endif
                     		</tr>
                     		@endforeach
