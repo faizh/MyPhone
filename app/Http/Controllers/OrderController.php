@@ -57,6 +57,7 @@ class OrderController extends Controller
     {
     	$order = new Order;
     	$order->id_user = Auth::user()->id;
+    	$order->code_order = str_random(15);
     	$order->total_payment = $request->total_payment;
     	$order->status = 0;
     	$order->save();
@@ -71,6 +72,17 @@ class OrderController extends Controller
     	}
 
     	return redirect('/');
-    	
+    }
+
+    public function yourorder()
+    {
+    	$order = Order::where('id_user',Auth::user()->id)->get();
+    	foreach ($order as $o) {
+	    	$id_product = Customer::where('id_order',$o->id)->get('id_product');
+	    	foreach ($id_product as $id) {
+	    		$product[] = Product::find($id);
+	    	}
+    	}
+    	return view('order.your_order',['active'=>'order','order'=>$order,'product'=>$product]);
     }
 }

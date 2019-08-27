@@ -31,6 +31,11 @@
 								@else
 								<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
 								@endif
+								@if($active=='order')
+								<li class="nav-item active"><a class="nav-link" href="/yourorder">Your Order</a></li>
+								@else
+								<li class="nav-item"><a class="nav-link" href="/yourorder">Your Order</a></li>
+								@endif
 							@endif
 
 							@if($active=='contact')
