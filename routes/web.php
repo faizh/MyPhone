@@ -24,4 +24,6 @@ Route::post('/postregister','UserController@postregister');
 
 Route::get('/cart','OrderController@cart');
 Route::get('/addcart/{id}','OrderController@addcart');
+Route::get('/cart/delete/{id}','OrderController@deletecart');
 Route::get('/product/{id}','OrderController@product');
+Route::get('/checkout','OrderController@checkout');

@@ -32,9 +32,22 @@ class OrderController extends Controller
 		return redirect('/login');
     }
 
+    public function deletecart($id)
+    {
+    	$cart = Cart::find($id);
+    	$cart->delete();
+    	return redirect('/cart');
+    }
+
     public function product($id)
     {
     	$product = Product::find($id);
     	return view('order.product',['active'=>'shop','product'=>$product]);
+    }
+
+    public function checkout()
+    {
+    	$checkout = Cart::all();
+    	return view('order.checkout',['active'=>'shop','checkout'=>$checkout]);
     }
 }

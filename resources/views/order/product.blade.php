@@ -54,7 +54,10 @@
 							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">Add to Cart</a>
+							<a class="primary-btn" href="/addcart/{{$product->id}}">Buy Now</a>
+							<a class="primary-btn" href="/addcart/{{$product->id}}">Add to Cart</a>
+						</div>
+						<div class="card_area d-flex align-items-center" style="margin-top: 15px">
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>
