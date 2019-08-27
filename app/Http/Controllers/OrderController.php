@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use \App\Cart;
 use \App\Product;
+use \App\Order;
+use \App\Customer;
 
 class OrderController extends Controller
 {
@@ -47,7 +49,28 @@ class OrderController extends Controller
 
     public function checkout()
     {
-    	$checkout = Cart::all();
+    	$checkout = Cart::where('id_user',Auth::user()->id)->get();
     	return view('order.checkout',['active'=>'shop','checkout'=>$checkout]);
+    }
+
+    public function order(Request $request)
+    {
+    	$order = new Order;
+    	$order->id_user = Auth::user()->id;
+    	$order->total_payment = $request->total_payment;
+    	$order->status = 0;
+    	$order->save();
+
+    	$product_paid = Cart::where('id_user',Auth::user()->id)->get();
+    	foreach ($product_paid as $p) {
+	    	$customer = new Customer;
+	    	$customer->id_order = $order->id;
+	    	$customer->id_product = $p->id_product;
+	    	$customer->save();
+	    	$p->delete();
+    	}
+
+    	return redirect('/');
+    	
     }
 }

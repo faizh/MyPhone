@@ -22,86 +22,126 @@
         <div class="container">
             <div class="billing_details">
                 <div class="row">
-                    <div class="col-lg-8">
-                        <h3>Billing Details</h3>
-                        <form class="row contact_form" action="/order" method="post" novalidate="novalidate">
-                            {{csrf_field()}}
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="first" name="name">
-                                <span class="placeholder" data-placeholder="First name"></span>
-                            </div>
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="last" name="name">
-                                <span class="placeholder" data-placeholder="Last name"></span>
-                            </div>
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="number" name="number">
-                                <span class="placeholder" data-placeholder="Phone number"></span>
-                            </div>
-                            <div class="col-md-6 form-group p_star">
-                                <input type="text" class="form-control" id="email" name="compemailany">
-                                <span class="placeholder" data-placeholder="Email Address"></span>
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="add1" name="add1">
-                                <span class="placeholder" data-placeholder="Address line 01"></span>
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="city" name="city">
-                                <span class="placeholder" data-placeholder="Town/City"></span>
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
-                            </div>
-                    </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-9">
                         <div class="order_box">
                             <h2>Your Order</h2>
-                            <ul class="list">
-                                <li><a href="#">Product <span>Total</span></a></li>
-                                @foreach($checkout as $c)
-                                <li><a href="#">{{$c->productName($c->id)}}<span class="middle">x {{$c->quantity}}</span> <span class="last">IDR {{$c->productPrice($c->id)}}</span></a></li>
-                                @php
-                                $total_price = $c->productPrice($c->id) * $c->quantity;
-                                @endphp
-                                @endforeach
-                            </ul>
-                            <ul class="list list_2">
-                                <li><a href="#">Total <span>IDR {{$total_price}}</span></a></li>
-                            </ul>
-                            <ul class="list list_2">
-                                <li><a href="#">Payment</a></li>
-                            </ul>
-                            <div class="payment_item active">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option6" name="selector">
-                                    <label for="f-option6">BRI</label>
-                                    <div class="check"></div>
-                                    
+                            <div class="cart_inner">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                            $total_payment=0;
+                                            @endphp
+                                            @foreach($checkout as $c)
+                                            <tr>
+                                                <td>
+                                                    <div class="media">
+                                                        <div class="d-flex">
+                                                            <img src="images/product/{{$c->productImage($c->id_product)}}" alt="" style="width: 100px">
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h5>{{$c->productName($c->id_product)}}</h5>
+                                                            <p>Minimalistic shop for multipurpose use</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h5>IDR {{$c->productPrice($c->id_product)}}</h5>
+                                                </td>
+                                                <td>
+                                                    <div class="product_count">
+                                                        <h5>{{$c->quantity}}</h5>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    @php
+                                                    $total_price = $c->productPrice($c->id_product) * $c->quantity;
+                                                    $total_payment+=$total_price;
+                                                    @endphp
+                                                    <h5>IDR {{$total_price}}</h5>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <h5>Subtotal</h5>
+                                                </td>
+                                                <td>
+                                                    <h5>IDR {{$total_payment}}</h5>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="payment_item active">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector">
-                                    <label for="f-option5">BCA</label>
-                                    <div class="check"></div>
-                                    
-                                </div>
-                            </div>
-                            <div class="payment_item active">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option7" name="selector">
-                                    <label for="f-option7">Mandiri</label>
-                                    <div class="check"></div>
-                                    
-                                </div>
-                            </div>
-                            
-                                <input type="hidden" name="total_price" value="{{$total_price}}">
-                            </form>
-                            <a class="primary-btn" href="#">Create Order</a>
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                        <div class="order_box">
+                            <h2>Payment</h2>
+                            <div class="cart_inner">
+                                <table>
+                                <tr>
+                                    <td><h5>Choose Bank</h5></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="payment_item">
+                                            <div class="radion_btn">
+                                                <input type="radio" id="f-option5" name="selector">
+                                                <label for="f-option5">BCA</label>
+                                                <div class="check"></div>
+                                            </div>
+                                        </div>
+                                        <div class="payment_item">
+                                            <div class="radion_btn">
+                                                <input type="radio" id="f-option6" name="selector">
+                                                <label for="f-option6">Mandiri</label>
+                                                <div class="check"></div>
+                                            </div>
+                                        </div>
+                                        <div class="payment_item">
+                                            <div class="radion_btn">
+                                                <input type="radio" id="f-option7" name="selector">
+                                                <label for="f-option7">BNI</label>
+                                                <div class="check"></div>
+                                            </div>
+                                        </div>
+                                        <div class="payment_item">
+                                            <div class="radion_btn">
+                                                <input type="radio" id="f-option8" name="selector">
+                                                <label for="f-option8">BRI</label>
+                                                <div class="check"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </table>
+                                    <form action="/order" method="post">
+                                        {{csrf_field()}}
+                                        <h3>Total Payment <span style="color: #ffba00">IDR {{$total_payment}}</span></h3>
+                                        <input type="hidden" name="total_payment" value="{{$total_payment}}">
+                                        <button type="submit" class="primary-btn">Create Order</button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

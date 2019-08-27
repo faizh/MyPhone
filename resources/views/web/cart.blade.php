@@ -33,6 +33,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $total_payment=0;
+                            @endphp
                             @foreach($cart as $c)
                             <tr>
                                 <td>
@@ -62,6 +65,7 @@
                                 <td>
                                     @php
                                     $total_price = $c->productPrice($c->id_product) * $c->quantity;
+                                    $total_payment+=$total_price;
                                     @endphp
                                     <h5>IDR {{$total_price}}</h5>
                                 </td>
@@ -83,7 +87,7 @@
                                     <h5>Subtotal</h5>
                                 </td>
                                 <td>
-                                    <h5>IDR {{$total_price}}</h5>
+                                    <h5>IDR {{$total_payment}}</h5>
                                 </td>
                             </tr>
                             <tr class="out_button_area">
