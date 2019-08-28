@@ -106,7 +106,7 @@
 
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="bca" name="bank" value="bca">
+                                                <input type="radio" id="bca" name="bank" value="bca" required="">
                                                 <label for="bca" value="bca">BCA</label>
                                                 <div class="check"></div>
                                             </div>

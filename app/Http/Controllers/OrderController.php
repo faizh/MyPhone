@@ -51,7 +51,9 @@ class OrderController extends Controller
     {
     	$checkout = Cart::where('id_user',Auth::user()->id)->get();
     	foreach ($checkout as $c) {
-    		$c->quantity = $request->qty;
+    		$qty = "qty".$c->id;
+    		$c->quantity = $request->$qty;
+    		$c->save();
     	}
     	return view('order.checkout',['active'=>'shop','checkout'=>$checkout]);
     }
