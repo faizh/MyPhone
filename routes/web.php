@@ -26,7 +26,7 @@ Route::get('/cart','OrderController@cart');
 Route::get('/addcart/{id}','OrderController@addcart');
 Route::get('/cart/delete/{id}','OrderController@deletecart');
 Route::get('/product/{id}','OrderController@product');
-Route::get('/checkout','OrderController@checkout');
+Route::post('/checkout','OrderController@checkout');
 Route::post('/order','OrderController@order');
 Route::get('/yourorder','OrderController@yourorder');
 Route::get('/transfer/{id}','OrderController@transfer');

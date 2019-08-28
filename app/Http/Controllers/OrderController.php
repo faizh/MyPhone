@@ -47,18 +47,20 @@ class OrderController extends Controller
     	return view('order.product',['active'=>'shop','product'=>$product]);
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
     	$checkout = Cart::where('id_user',Auth::user()->id)->get();
+    	foreach ($checkout as $c) {
+    		$c->quantity = $request->qty;
+    	}
     	return view('order.checkout',['active'=>'shop','checkout'=>$checkout]);
     }
 
     public function order(Request $request)
     {
-    	dd($request);
     	$order = new Order;
     	$order->id_user = Auth::user()->id;
-    	$order->code_order = str_random(15);
+    	$order->code_order = str_random(5);
     	$order->total_payment = $request->total_payment;
     	$order->status = 0;
     	$order->save();
@@ -68,11 +70,14 @@ class OrderController extends Controller
 	    	$customer = new Customer;
 	    	$customer->id_order = $order->id;
 	    	$customer->id_product = $p->id_product;
+	    	$customer->quantity=$p->quantity;
 	    	$customer->save();
 	    	$p->delete();
     	}
+    	$data_order = Order::find($order->id);
+    	$bank = $request->bank;
 
-    	return redirect('/');
+    	return view('order.transfer',['active'=>'shop','order'=>$data_order,'bank'=>$bank]);
     }
 
     public function yourorder()

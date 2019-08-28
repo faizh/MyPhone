@@ -106,28 +106,28 @@
 
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="bca" name="selector">
+                                                <input type="radio" id="bca" name="bank" value="bca">
                                                 <label for="bca" value="bca">BCA</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="mandiri" name="selector">
+                                                <input type="radio" id="mandiri" name="bank" value="mandiri">
                                                 <label for="mandiri">Mandiri</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="bni" name="selector">
+                                                <input type="radio" id="bni" name="bank" value=bni"">
                                                 <label for="bni">BNI</label>
                                                 <div class="check"></div>
                                             </div>
                                         </div>
                                         <div class="payment_item">
                                             <div class="radion_btn">
-                                                <input type="radio" id="bri" name="selector">
+                                                <input type="radio" id="bri" name="bank" value="bri">
                                                 <label for="bri">BRI</label>
                                                 <div class="check"></div>
                                             </div>
@@ -138,7 +138,7 @@
                                     
                                         <h3>Total Payment <span style="color: #ffba00">IDR {{$total_payment}}</span></h3>
                                         <input type="hidden" name="total_payment" value="{{$total_payment}}">
-                                        <button type="submit" class="genric-btn primary radius">Create Order</button>
+                                        <button type="submit" class="genric-btn primary radius">CREATE ORDER</button>
                                     </form>
                             </div>
                         </div>

@@ -42,18 +42,22 @@
                     			<td>{{$number}}</td>
                     			<td>{{$o->code_order}}</td>
                     			<td>
-                    				@foreach($product as $data_p)
-                    					@foreach($data_p as $p)
-                    				<div class="media">
-                                        <div class="d-flex">
-                                            <img src="images/product/{{$p->gambar}}" alt="" style="width: 100px">
-                                        </div>
-                                        <div class="media-body">
-                                            <h5>{{$p->nama}}</h5>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                    @endforeach
+                    				@foreach($o->getProduct($o->id) as $p)
+                    					@foreach($p as $data)
+                    					<div class="media">
+	                                        <div class="d-flex">
+	                                            <img src="images/product/{{$data->gambar}}" alt="" style="width: 100px">
+	                                        </div>
+	                                        <div class="media-body">
+	                                            <h5>{{$data->nama}}</h5>
+	                                            <p>Minimalistic shop for multipurpose use</p>
+	                                            @foreach($o->getQuantity($o->id,$data->id) as $quantity)
+	                                            <p>x {{$quantity->quantity}}</p>
+	                                            @endforeach
+	                                        </div>
+	                                    </div>
+                    					@endforeach
+                    				@endforeach
                     			</td>
                     			<td>IDR {{$o->total_payment}}</td>
                 				@if($o->proof_payment==null)

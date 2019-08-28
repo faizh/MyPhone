@@ -54,6 +54,8 @@
                                 </td>
                                 <td>
                                     <div class="product_count">
+                                        <form action="/checkout" method="post">
+                                        {{csrf_field()}}
                                         <input type="text" name="qty" id="sst" maxlength="12" value="{{$c->quantity}}" title="Quantity:"
                                             class="input-text qty">
                                         <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
@@ -107,7 +109,8 @@
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
                                         <a class="gray_btn" href="/shop">Continue Shopping</a>
-                                        <a class="primary-btn" href="/checkout">Checkout</a>
+                                        <button type="submit" class="genric-btn primary">CHECKOUT</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

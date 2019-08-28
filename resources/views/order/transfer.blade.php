@@ -32,7 +32,17 @@
                                         <tr>
                                             <td>Bank</td>
                                             <td>:</td>
-                                            <td>Mandiri</td>
+                                            @if(isset($bank))
+                                                @if($bank=="bca")
+                                                <td>BCA</td>
+                                                @elseif($bank=="mandiri")
+                                                <td>Mandiri</td>
+                                                @elseif($bank=="bni")
+                                                <td>BNI</td>
+                                                @elseif($bank=="bri")
+                                                <td>BRI</td>
+                                                @endif
+                                            @endif
                                         </tr>
                                         <tr>
                                             <td>No</td>
