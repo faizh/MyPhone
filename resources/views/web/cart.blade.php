@@ -66,7 +66,7 @@
                                     <div class="product_count">
                                         <form action="/checkout" method="post">
                                         {{csrf_field()}}
-                                        <input type="number" name="qty{{$c->id}}" id="qty{{$c->id}}" maxlength="12" min="1" value="{{$c->quantity}}" title="Quantity:" class="form-control">
+                                        <input type="number" name="qty{{$c->id}}" id="qty{{$c->id}}" maxlength="12" min="1" value="{{$c->quantity}}" title="Quantity:" class="form-control" onchange="updatePrice()">
                                     </div>
                                 </td>
                                 <td>
@@ -114,34 +114,61 @@
     @section('jquery')
 
     <script>
-        $(document).ready(function() {
-            var cart = {!! json_encode($cart->toArray()) !!};
-            var subtotal = 0;
-            $.each(cart, function(){
-                var variabel_price = "#price"+this.id;
-                var variabel_qty = "#qty"+this.id;
-                var variabel_total = "#total_price"+this.id;
-                var price = parseInt($(variabel_price).text());       
-                function updatePrice() {
+        var cart = {!! json_encode($cart->toArray()) !!};
+
+       
+
+        
+            // $.each(cart, function(){
+            //     var variabel_price = "#price"+this.id;
+            //     var variabel_qty = "#qty"+this.id;
+            //     var variabel_total = "#total_price"+this.id;
+            //     var price = parseInt($(variabel_price).text());       
+                
+            //     function updatePrice() {
+            //         var sum, num = parseInt($(variabel_qty).val(),10);
+            //         // console.log(num);
+            //         if(num) {
+            //             sum = num * price;
+            //             $(variabel_total).text(sum);
+            //         }
+            //     }
+            //     $(document).on("change, mouseup, keyup", "#qty"+this.id, updatePrice);
+            // });
+
+            function updatePrice(){
+                var subtotal =0;
+                $.each(cart, function(){
+                    var variabel_price = "#price"+this.id;
+                    var variabel_qty = "#qty"+this.id;
+                    var variabel_total = "#total_price"+this.id;
+                    var price = parseInt($(variabel_price).text());    
                     var sum, num = parseInt($(variabel_qty).val(),10);
-                    console.log(num);
+                    // console.log(num);
                     if(num) {
                         sum = num * price;
                         $(variabel_total).text(sum);
                     }
-                }
-                $(document).on("change, mouseup, keyup", "#qty"+this.id, updatePrice);
-            });
-            $.each(cart, function(){
-                var variabel_price = "#price"+this.id;
-                var price = parseInt($(variabel_price).text());
-                subtotal = subtotal + price;
-                console.log(price);
-                function upadateSubtotal() {
-                    $("#subtotal").text(subtotal);
-                }
-                $(document).on("change, mouseup, keyup", "#qty"+this.id, upadateSubtotal);
-            });
-        });
+
+                    var variabel_total = "#total_price"+this.id;
+                    var test = parseInt($(variabel_total).text());
+                    subtotal += test;
+                });
+                $("#subtotal").text(subtotal);
+            }
+
+            // $.each(cart, function(){
+            //     var subtotal=0;
+            //     $("#qty"+this.id).change(function(){
+            //         var variabel_total = "#total_price"+this.id;
+            //         var test = parseInt($(variabel_total).text());
+            //         console.log(test);
+            //         subtotal += test;
+            //         $("#subtotal").text(subtotal);
+            //     });
+            // });
+
+        
+
     </script>
     @stop

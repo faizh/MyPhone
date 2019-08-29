@@ -112,4 +112,9 @@ class OrderController extends Controller
         }
         return redirect('/yourorder');
     }
+
+    public function categories(Request $request)
+    {
+    	dd($request);
+    }
 }

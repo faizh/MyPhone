@@ -31,3 +31,4 @@ Route::post('/order','OrderController@order');
 Route::get('/yourorder','OrderController@yourorder');
 Route::get('/transfer/{id}','OrderController@transfer');
 Route::post('/complete','OrderController@complete');
+Route::post('/categories','OrderController@categories');
