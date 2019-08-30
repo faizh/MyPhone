@@ -45,6 +45,8 @@
 							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 						</ul>
 						<p>{{$product->description}}</p>
+						<form action="/addcartpost/{{$product->id}}" method="post">
+							{{csrf_field()}}
 						<div class="product_count">
 							<label for="qty">Quantity:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
@@ -55,7 +57,9 @@
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" href="/addcart/{{$product->id}}">Buy Now</a>
-							<a class="primary-btn" href="/addcart/{{$product->id}}">Add to Cart</a>
+							<button type="submit" class="primary-btn genric-btn primary radius ">ADD TO CART</button>
+							<!-- <a class="primary-btn" type="submit">Add to Cart</a> -->
+							</form>
 						</div>
 						<div class="card_area d-flex align-items-center" style="margin-top: 15px">
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>

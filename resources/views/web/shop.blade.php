@@ -29,7 +29,9 @@
 								 class="lnr lnr-arrow-right"></span>{{$c->nama}}<span class="number">(53)</span></a>
 							<ul class="collapse" id="{{$c->nama}}" data-toggle="collapse" aria-expanded="false" aria-controls="{{$c->nama}}">
 								@foreach($brand as $b)
+								@if($b->id_category==$c->id)
 								<li class="main-nav-list child"><a href="#" id="test">{{$b->nama}}<span class="number">({{$b->id}})</span></a></li>
+								@endif
 								@endforeach
 							</ul>
 						</li>
@@ -116,7 +118,7 @@
 											<span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a>
-										<a href="" class="social-info">
+										<a href="/wishlist/{{$p->id}}" class="social-info">
 											<span class="lnr lnr-heart"></span>
 											<p class="hover-text">Wishlist</p>
 										</a>
@@ -299,10 +301,15 @@
 
 	@stop
 
+	@section('jquery')
 	<script>
-		$(document).ready(function(){
-		  $("#test").click(function(){
-		    $("#apa").hide();
-		  });
+		var product = {!! json_encode($product->toArray()) !!};
+		$.each(product, function(){
+			var addcart = "#addcart"+this.id;
+			$(addcart).click(function(){
+				var product_id = $(this).attr('product-id');
+				window.location = "/addcart/"+product_id;
+			});
 		});
 	</script>
+	@stop

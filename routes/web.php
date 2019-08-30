@@ -24,6 +24,7 @@ Route::post('/postregister','UserController@postregister');
 
 Route::get('/cart','OrderController@cart');
 Route::get('/addcart/{id}','OrderController@addcart');
+Route::post('/addcartpost/{id}','OrderController@addcartpost');
 Route::get('/cart/delete/{id}','OrderController@deletecart');
 Route::get('/product/{id}','OrderController@product');
 Route::post('/checkout','OrderController@checkout');
@@ -32,3 +33,6 @@ Route::get('/yourorder','OrderController@yourorder');
 Route::get('/transfer/{id}','OrderController@transfer');
 Route::post('/complete','OrderController@complete');
 Route::post('/categories','OrderController@categories');
+Route::get('/wishlist','OrderController@wishlist');
+Route::get('/wishlist/{id}','OrderController@addwishlist');
+Route::get('/wishlist/delete/{id}','OrderController@deletewishlist');

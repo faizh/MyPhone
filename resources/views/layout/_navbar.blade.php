@@ -36,6 +36,11 @@
 								@else
 								<li class="nav-item"><a class="nav-link" href="/yourorder">Your Order</a></li>
 								@endif
+								@if($active=='wishlist')
+									<li class="nav-item active"><a class="nav-link" href="/wishlist">Wishlist</a></li>
+								@else
+									<li class="nav-item"><a class="nav-link" href="/wishlist">Wishlist</a></li>
+								@endif
 							@endif
 
 							@if($active=='contact')
@@ -45,6 +50,7 @@
 							@endif
 
 							@if(Auth::check())
+
 							<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 							<li class="nav-item active"><a class="nav-link" href="/profile">{{auth()->user()->nama_depan}}</a></li>
 							@else

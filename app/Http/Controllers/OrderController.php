@@ -8,6 +8,7 @@ use \App\Cart;
 use \App\Product;
 use \App\Order;
 use \App\Customer;
+use \App\Favorite;
 
 class OrderController extends Controller
 {
@@ -23,13 +24,26 @@ class OrderController extends Controller
     		$cart = new Cart;
     		$cart->id_user = Auth::user()->id;
     		$cart->id_product = $id;
-    		if(isset($quantity)){
-    			$cart->quantity = $quantity;
+    		$cart->quantity = 1;
+    		$cart->save();
+    		return redirect()->back();
+    	}
+		return redirect('/login');
+    }
+
+    public function addcartpost($id, Request $request)
+    {
+    	if(Auth::check()){
+    		$cart = new Cart;
+    		$cart->id_user = Auth::user()->id;
+    		$cart->id_product = $id;
+    		if($request->has('qty')){
+    			$cart->quantity = $request->qty;
     		}else{
 	    		$cart->quantity = 1;
     		}
     		$cart->save();
-    		return redirect('/cart');
+    		return redirect()->back();
     	}
 		return redirect('/login');
     }
@@ -118,5 +132,27 @@ class OrderController extends Controller
     public function categories(Request $request)
     {
     	dd($request);
+    }
+
+    public function wishlist()
+    {
+    	$wishlist = Favorite::where('id_user',Auth::user()->id)->get();
+    	return view('order.wishlist',['active'=>'wishlist','wishlist'=>$wishlist]);
+    }
+
+    public function addwishlist($id)
+    {
+    	$fav = new Favorite;
+    	$fav->id_user = Auth::user()->id;
+    	$fav->id_product = $id;
+    	$fav->save();
+    	return redirect()->back();
+    }
+
+    public function deletewishlist($id)
+    {
+    	$fav = Favorite::find($id);
+    	$fav->delete();
+    	return redirect()->back();
     }
 }
