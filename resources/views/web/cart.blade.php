@@ -42,9 +42,15 @@
                             <tr>
                                 <td>
                                     <div class="switch-wrap d-flex justify-content-between">
+                                        <form action="/checkout" method="post">
+                                        {{csrf_field()}}
                                         <div class="confirm-checkbox">
-                                            <input type="checkbox" id="confirm-checkbox">
-                                            <label for="confirm-checkbox"></label>
+                                            @if($c->checked=="on") 
+                                            <input type="checkbox" id="chk-box{{$c->id}}" name="check{{$c->id}}" checked="on" onchange="updateChk()">
+                                            @else
+                                            <input type="checkbox" id="chk-box{{$c->id}}" name="check{{$c->id}}" onchange="updateChk()">
+                                            @endif
+                                            <label for="chk-box{{$c->id}}"></label>
                                         </div>
                                     </div>
                                 </td>
@@ -64,15 +70,15 @@
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <form action="/checkout" method="post">
-                                        {{csrf_field()}}
                                         <input type="number" name="qty{{$c->id}}" id="qty{{$c->id}}" maxlength="12" min="1" value="{{$c->quantity}}" title="Quantity:" class="form-control" onchange="updatePrice()">
                                     </div>
                                 </td>
                                 <td>
                                     @php
                                     $total_price = $c->productPrice($c->id_product) * $c->quantity;
-                                    $total_payment+=$total_price;
+                                    if($c->checked=="on"){
+                                        $total_payment+=$total_price;
+                                    }
                                     @endphp
                                     <h5>IDR <span id="total_price{{$c->id}}">{{$total_price}}</span></h5>
                                 </td>
@@ -116,59 +122,52 @@
     <script>
         var cart = {!! json_encode($cart->toArray()) !!};
 
-       
-
-        
-            // $.each(cart, function(){
-            //     var variabel_price = "#price"+this.id;
-            //     var variabel_qty = "#qty"+this.id;
-            //     var variabel_total = "#total_price"+this.id;
-            //     var price = parseInt($(variabel_price).text());       
-                
-            //     function updatePrice() {
-            //         var sum, num = parseInt($(variabel_qty).val(),10);
-            //         // console.log(num);
-            //         if(num) {
-            //             sum = num * price;
-            //             $(variabel_total).text(sum);
-            //         }
-            //     }
-            //     $(document).on("change, mouseup, keyup", "#qty"+this.id, updatePrice);
-            // });
-
             function updatePrice(){
                 var subtotal =0;
                 $.each(cart, function(){
+                    var chk_box = "#chk-box"+this.id;
+                    var isChecked = $(chk_box).is(':checked');
                     var variabel_price = "#price"+this.id;
                     var variabel_qty = "#qty"+this.id;
                     var variabel_total = "#total_price"+this.id;
                     var price = parseInt($(variabel_price).text());    
                     var sum, num = parseInt($(variabel_qty).val(),10);
                     // console.log(num);
-                    if(num) {
-                        sum = num * price;
-                        $(variabel_total).text(sum);
+                    if (isChecked) {
+                        if(num) {
+                            sum = num * price;
+                            $(variabel_total).text(sum);
+                        }
+                        var variabel_total = "#total_price"+this.id;
+                        var test = parseInt($(variabel_total).text());
+                        subtotal += test;
                     }
-
-                    var variabel_total = "#total_price"+this.id;
-                    var test = parseInt($(variabel_total).text());
-                    subtotal += test;
                 });
                 $("#subtotal").text(subtotal);
             }
 
-            // $.each(cart, function(){
-            //     var subtotal=0;
-            //     $("#qty"+this.id).change(function(){
-            //         var variabel_total = "#total_price"+this.id;
-            //         var test = parseInt($(variabel_total).text());
-            //         console.log(test);
-            //         subtotal += test;
-            //         $("#subtotal").text(subtotal);
-            //     });
-            // });
+            function updateChk(){
+                var real_total=0;
+                $.each(cart, function(){
+                var chk_box = "#chk-box"+this.id;
+                // var isChecked = $(chk_box).is(':checked');
+                    if($(chk_box).is(':checked')){
+                        var subtotal = 0;
+                        var variabel_price = "#price"+this.id;
+                        var variabel_total = "#total_price"+this.id;   
+                        var price = parseInt($(variabel_price).text());
+                        var variabel_qty = "#qty"+this.id;
+                        var num = parseInt($(variabel_qty).val(),10);
+                        subtotal = price * num;
+                        real_total+=subtotal;
+                    }
+                });
+                var fix_total = real_total;
+                console.log(fix_total);
+                $("#subtotal").text(real_total);
+            }
 
-        
+           
 
     </script>
     @stop

@@ -28,8 +28,8 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#{{$c->nama}}" aria-expanded="false" aria-controls="{{$c->nama}}"><span
 								 class="lnr lnr-arrow-right"></span>{{$c->nama}}<span class="number">(53)</span></a>
 							<ul class="collapse" id="{{$c->nama}}" data-toggle="collapse" aria-expanded="false" aria-controls="{{$c->nama}}">
+								@foreach($brand as $b)
 								<li class="main-nav-list child"><a href="#" id="test">{{$b->nama}}<span class="number">({{$b->id}})</span></a></li>
-								@endif
 								@endforeach
 							</ul>
 						</li>

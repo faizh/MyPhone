@@ -41,6 +41,7 @@
                                             $total_payment=0;
                                             @endphp
                                             @foreach($checkout as $c)
+                                            @if($c->checked=="on")
                                             <tr>
                                                 <td>
                                                     <div class="media">
@@ -69,6 +70,7 @@
                                                     <h5>IDR {{$total_price}}</h5>
                                                 </td>
                                             </tr>
+                                            @endif
                                             @endforeach
 
                                             <tr>
