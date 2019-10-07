@@ -155,4 +155,9 @@ class OrderController extends Controller
     	$fav->delete();
     	return redirect()->back();
     }
+
+    public function buynow($id, Request $request)
+    {
+    	dd($request);
+    }
 }

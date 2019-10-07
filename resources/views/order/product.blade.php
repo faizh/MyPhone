@@ -47,6 +47,8 @@
 						<p>{{$product->description}}</p>
 						<form action="/addcartpost/{{$product->id}}" method="post">
 							{{csrf_field()}}
+							<form action="/buynow/{{$product->id}}" method="post">
+								{{csrf_field()}}
 						<div class="product_count">
 							<label for="qty">Quantity:</label>
 							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
@@ -56,8 +58,9 @@
 							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/addcart/{{$product->id}}">Buy Now</a>
-							<button type="submit" class="primary-btn genric-btn primary radius ">ADD TO CART</button>
+								<button type="submit" class="primary-btn genric-btn primary radius ">BUY NOW</button>
+								</form>
+							<a href="#" data-url="/api/addcart/{{$product->id}}" class="primary-btn genric-btn primary radius">ADD TO CART</a>
 							<!-- <a class="primary-btn" type="submit">Add to Cart</a> -->
 							</form>
 						</div>

@@ -36,3 +36,7 @@ Route::post('/categories','OrderController@categories');
 Route::get('/wishlist','OrderController@wishlist');
 Route::get('/wishlist/{id}','OrderController@addwishlist');
 Route::get('/wishlist/delete/{id}','OrderController@deletewishlist');
+Route::post('buynow/{id}','OrderController@buynow');
+
+Route::get('/admin','AdminController@index');
+Route::get('/user','AdminController@user');

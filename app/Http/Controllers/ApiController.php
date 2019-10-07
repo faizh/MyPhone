@@ -20,8 +20,10 @@ class ApiController extends Controller
 	    		$cart->quantity = 1;
     		}
     		$cart->save();
-    		return redirect()->back();
-    	}
-		return redirect('/login');
+    		// return redirect()->back();
+    	}else{
+    		return redirect('/login');
+            
+        }
     }
 }
