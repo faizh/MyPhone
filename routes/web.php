@@ -39,4 +39,7 @@ Route::get('/wishlist/delete/{id}','OrderController@deletewishlist');
 Route::post('buynow/{id}','OrderController@buynow');
 
 Route::get('/admin','AdminController@index');
-Route::get('/user','AdminController@user');
+Route::get('/admin/user','AdminController@user');
+Route::get('/admin/product','AdminController@product');
+Route::get('/admin/brand','AdminController@brand');
+Route::get('/admin/order','AdminController@order');

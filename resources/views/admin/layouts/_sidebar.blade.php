@@ -9,33 +9,27 @@
 						@endif
 
 						@if($active=='user')
-						<li><a href="/user" class="active"><i class="lnr lnr-user"></i> <span>User</span></a></li>
+						<li><a href="/admin/user" class="active"><i class="lnr lnr-user"></i> <span>User</span></a></li>
 						@else
-						<li><a href="/user"><i class="lnr lnr-user"></i> <span>User</span></a></li>
+						<li><a href="/admin/user"><i class="lnr lnr-user"></i> <span>User</span></a></li>
 						@endif
 
 						@if($active=='product')
-						<li><a href="/product" class="active"><i class="lnr lnr-user"></i> <span>Product</span></a></li>
+						<li><a href="/admin/product" class="active"><i class="lnr lnr-user"></i> <span>Product</span></a></li>
 						@else
-						<li><a href="/product"><i class="lnr lnr-user"></i> <span>Product</span></a></li>
+						<li><a href="/admin/product"><i class="lnr lnr-user"></i> <span>Product</span></a></li>
 						@endif
 
-						@if($active=='customer')
-						<li><a href="/customer" class="active"><i class="lnr lnr-user"></i> <span>Customer</span></a></li>
+						@if($active=='brand')
+						<li><a href="/admin/brand" class="active"><i class="lnr lnr-user"></i> <span>Brand</span></a></li>
 						@else
-						<li><a href="/customer"><i class="lnr lnr-user"></i> <span>Customer</span></a></li>
-						@endif
-
-						@if($active=='brands')
-						<li><a href="/brands" class="active"><i class="lnr lnr-user"></i> <span>Brands</span></a></li>
-						@else
-						<li><a href="/brands"><i class="lnr lnr-user"></i> <span>Brands</span></a></li>
+						<li><a href="/admin/brand"><i class="lnr lnr-user"></i> <span>Brand</span></a></li>
 						@endif
 
 						@if($active=='order')
-						<li><a href="/order" class="active"><i class="lnr lnr-user"></i> <span>Order</span></a></li>
+						<li><a href="/admin/order" class="active"><i class="lnr lnr-user"></i> <span>Order</span></a></li>
 						@else
-						<li><a href="/order"><i class="lnr lnr-user"></i> <span>Order</span></a></li>
+						<li><a href="/admin/order"><i class="lnr lnr-user"></i> <span>Order</span></a></li>
 						@endif
 					</ul>
 				</nav>

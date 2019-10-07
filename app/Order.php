@@ -20,4 +20,10 @@ class Order extends Model
     	$quantity = \App\Customer::where('id_order',$id_order)->where('id_product',$id_product)->get('quantity');
     	return $quantity;
     }
+
+    public function getUser($id)
+    {
+        $user = \App\User::find($id);
+        return $user->nama_depan." ".$user->nama_belakang;;
+    }
 }

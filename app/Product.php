@@ -16,4 +16,10 @@ class Product extends Model
     {
 	    return asset('images/product/'.$this->gambar);
     }
+
+    public function getBrand($id)
+    {
+    	$brand = \App\Brand::find($id);
+    	return $brand->nama;
+    }
 }
